@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- *
- * @author lucas leave this to piss off everyone
+ * Kattis Solution to Bacon, Eggs, and Spam
+ *  https://open.kattis.com/problems/baconeggsandspam
  */
 public class BaconEggs {
 
