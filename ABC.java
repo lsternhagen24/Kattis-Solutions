@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis problem ABC
+ https://open.kattis.com/problems/abc
  */
 public class ABC {
     public static void main(String[] args) {
