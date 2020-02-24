@@ -3,6 +3,11 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+/*
+Kattis solution to Baloni Problem
+https://open.kattis.com/problems/baloni
+*/
+
 public class Baloni {
     public static void main(String[] args){
         //read all input
