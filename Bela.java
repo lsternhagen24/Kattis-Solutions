@@ -5,24 +5,27 @@ import java.util.*;
 /**
  *
  * @author lucas
+ Solution to Kattis problem Bela\
+ https://open.kattis.com/problems/bela
  */
 public class Bela {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws Exception {
+        //read input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+       //read the number of numbers and the trump suit.
         String[] nums = br.readLine().split(" ");
         String trumpSuit = nums[1];
         int hands = Integer.parseInt(nums[0]);
         int sum = 0;
+        //loop through each of the hands
         for (int i = 0; i < hands; i++) {
             for (int j = 0; j < 4; j++) {
                 String a = br.readLine();
+                //get the suit and value from the hand
                 String value = a.substring(0, 1);
                 String suit = a.substring(1);
-
+                //if the suit is the trump suit then use the dominant value
                 if (suit.equals(trumpSuit)) {
 
                 switch(value){
@@ -39,6 +42,7 @@ public class Bela {
                 }
                 
                 }
+                //else use the nondominant value
                 else {
                 switch(value){
                     case "A": sum+=11;break;
@@ -55,8 +59,8 @@ public class Bela {
                 }
             }
         }
+        //print output
         System.out.println(sum);
-
     }
 
 }
