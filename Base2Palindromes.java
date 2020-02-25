@@ -4,25 +4,24 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author lucas
+ Solution to Kattis problem Base 2 Palindromes
+ https://open.kattis.com/search?q=palindrome
  */
 public class Base2Palindromes {
 
     public static void main(String[] args)throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //pattern of reoccuring solution starts with two rows
         int[] firstRow = {4, 6, 4};
         int[] secondRow = {12, 6, 12};
         ArrayList<Integer> answers = new ArrayList<Integer>();
         answers.addAll(Arrays.asList(1, 3, 5, 7, 9, 15,17,21,27,31,33,45,51,63));
         boolean rowType = true;
         int current = 63;
+        //generate all palindromes
         while (answers.size() < 50000) {
             if (rowType == true) {
                 current += 2;
@@ -63,7 +62,9 @@ public class Base2Palindromes {
                 secondRow = temp2;
             }
         }
+        //read which palindrome we want
         int n = Integer.parseInt(br.readLine())-1;
+        //get that palindrome from array we generated
         System.out.println(answers.get(n));
     }
 }
