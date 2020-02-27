@@ -11,6 +11,8 @@ import java.util.Set;
 
 /**
  * @author L-Sternhagen
+ Solution to kattis problem Cantina of Babel
+ https://open.kattis.com/problems/cantinaofbabel
  */
 public class Cantina {
     public static void main(String[] args)throws Exception {
@@ -35,21 +37,11 @@ public class Cantina {
                 }
             }
         }
-      //  for(String i: howMany.keySet())System.out.println(i + " can speak to " + howMany.get(i) + " people.");
         ArrayList<Integer> n = new ArrayList<Integer>();
         for(String i: howMany.keySet()){
-          //  System.out.println(i + " = " + howMany.get(i) );
             n.add(howMany.get(i));
         }
-     //   Map<Integer,Integer> out = new HashMap<Integer,Integer>();
-       // for(Integer i: n){
-         //   if(out.containsKey(i))out.put(i, out.get(i)+1);
-           // else out.put(i, 1);
-        //}
-        //int max = 0;
-        //for(Integer i: out.keySet()){
-        //    if(out.get(i) > max)max = out.get(i);
-        //}
+     
         System.out.println(n.size()-findMax(n));
     }
     static int findMax(ArrayList<Integer> a){
