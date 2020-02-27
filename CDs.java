@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -11,37 +5,32 @@ import java.util.*;
 /**
  *
  * @author lucas
+ * Solution to Kattis problem CD
+ * https://open.kattis.com/problems/cd
  */
-public class CDs {
+public class CD {
+    public static void main(String[] args)throws Exception {
+        //read first two inputs to get number of cd's to read
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
+        String line = br.readLine();
 
-    public static void main(String[] args) {
-        try{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-            String line = br.readLine();
-            int count = 0;
-            int jack = Integer.parseInt(line.substring(0, line.indexOf(" ")));
-            int jill = Integer.parseInt(line.substring(line.indexOf(" ")+1));
-            if (jack == 0 && jill == 0) {
-                break;
+        //loop while there are more test cases
+        while(!line.equals("0 0")){
+            int a = Integer.parseInt(line.substring(0,line.indexOf(" ")));
+            int b = Integer.parseInt(line.substring(line.indexOf(" ")+1));
+            HashSet<Integer> set = new HashSet<Integer>();
+            int output = 0;
+            //loop through every CD
+            for(int i = 0; i < a+b; i++){
+                int cur = Integer.parseInt(br.readLine());
+                //if we already have the CD then we have a duplicate
+                if(set.contains(cur))output++;
+                //else add to our set
+                else set.add(cur);
             }
-            Set<Integer> jAndJCD = new HashSet<Integer>();
-            while (jack > 0) {
-                int current = Integer.parseInt(br.readLine());
-                jAndJCD.add(current);
-                jack--;
-            }
-            while (jill > 0) {
-                int current = Integer.parseInt(br.readLine());
-                if (jAndJCD.contains(current)) {
-                    count++;
-                }
-                jill--;
-            }
-            System.out.println(count);
-        }
-        }catch(Exception e){
-            
+            //print output
+            System.out.println(output);
+            line = br.readLine();
         }
     }
 }
