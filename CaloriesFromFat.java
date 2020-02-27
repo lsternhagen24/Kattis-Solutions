@@ -2,23 +2,23 @@
 import java.util.Scanner;
 
 /**
- *
  * @author lucas
+ Solution to kattis problem calories from fat.
+ https://open.kattis.com/problems/calories
  */
 public class CaloriesFromFat {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+        //read input
         Scanner sc = new Scanner(System.in);
         String line = sc.nextLine();
 
         while (true) {
             double sum = 0;
             double fat = 0;
-
+            //while there is more input
             while (line.equals("-") == false) {
+                //set all member variables
                 String[] array = line.split(" ");
                 String faty = array[0];
                 String protein = array[1];
@@ -34,7 +34,9 @@ public class CaloriesFromFat {
                 double starches = Double.parseDouble(startch.substring(0, startch.length() - 1));
                 double alcohols = Double.parseDouble(alcohol.substring(0, alcohol.length() - 1));
                 String[] types = {faty, protein, sugar, startch, alcohol};
+                //loop through each type
                 for (int i = 0; i < 5; i++) {
+                    //decision based on which line type it is
                     if (types[i].charAt(types[i].length() - 1) == 'g') {
                         if (i == 0) {
                             fatInItem *= 9;
@@ -56,8 +58,10 @@ public class CaloriesFromFat {
                 fat += fatInItem; 
                 line = sc.nextLine();
             }
+            //round the fat to two decimal places
             System.out.println(Math.round(((fat / sum) * 100)) + "%");
             line = sc.nextLine();
+            //break if we are at the end of the input
             if (line.equals("-")) {
                 break;
             }
