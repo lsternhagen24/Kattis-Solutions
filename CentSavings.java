@@ -29,7 +29,7 @@ public class CentSavings {
             generateTestData();
         }      
         //input done
-        
+        //hold each state we could be in
         Set<State> currentStates = new HashSet<State>();
         int[][] minForEachDigit;
         //add initial state
@@ -87,12 +87,12 @@ public class CentSavings {
         }
     
     }
-    
+    //holds a state we could be in, each state has a last digit from the sum, a total cost of money lost or gained, and the number of dividers left
     public static class State{
         int dividersLeft;
         int cost;
         int lastDigit;
-        
+        //constructor for the state
         public State(int dividersUsed, int cost, int lastDigit){
             this.dividersLeft = dividersUsed;
             this.cost = cost;
@@ -108,6 +108,7 @@ public class CentSavings {
             return "Dividers Left = " + dividersLeft  + "\n" + "Cost = " + cost + "\n" + "Last Digit = " +  lastDigit;
         }
     }
+    //find the cost for a given integer
     public static int getCost(int i){
         if(i < 5)return i *-1;
         else return 10-i; 
