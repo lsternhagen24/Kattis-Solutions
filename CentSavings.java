@@ -7,6 +7,8 @@ import java.util.Set;
 
 /**
  * @author L-Sternhagen
+ Solution to kattis problem Cent Savings
+ https://open.kattis.com/problems/centsavings
  */
 public class CentSavings {
     public static int n;
@@ -35,6 +37,7 @@ public class CentSavings {
         //for each item
         for(int i = 0; i < n; i++){
             Set<State> newStates = new HashSet<State>();
+            //set up dynamic programming array
             minForEachDigit = new int[10][d+1]; for(int[] row: minForEachDigit)Arrays.fill(row, Integer.MAX_VALUE);
 
             for(State g: currentStates){
