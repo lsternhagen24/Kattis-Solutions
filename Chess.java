@@ -1,165 +1,65 @@
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-
+import java.util.*;
 /**
  *
  * @author lucas
+ * Solution to kattis problem Chess
+ * https://open.kattis.com/problems/chess
  */
 public class Chess {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        Map<Character, Integer> row = new HashMap<Character, Integer>();
-        Map<Character, Integer> column = new HashMap<Character, Integer>();
-
-        row.put('8', 0);
-        row.put('7', 1);
-        row.put('6', 2);
-        row.put('5', 3);
-        row.put('4', 4);
-        row.put('3', 5);
-        row.put('2', 6);
-        row.put('1', 7);
-        column.put('A', 0);
-        column.put('B', 1);
-        column.put('C', 2);
-        column.put('D', 3);
-        column.put('E', 4);
-        column.put('F', 5);
-        column.put('G', 6);
-        column.put('H', 7);
-
         Scanner sc = new Scanner(System.in);
         int testCases = Integer.parseInt(sc.nextLine());
-        for (int i = 0; i < testCases; i++) {
-            String output = "";
-            String ca = sc.next();
-            String ra = sc.next();
-            String cb = sc.next();
-            String rb = sc.next();
-            if (ca.equals(cb) && ra.equals(rb)) {
-                System.out.println("0 " + ca + " " + ra);
-                continue;
-            }
-            int c1 = column.get(ca.charAt(0));
-            int r1 = row.get(ra.charAt(0));
-            int c2 = column.get(cb.charAt(0));
-            int r2 = row.get(rb.charAt(0));
-            if (isSameColor(r1, c1, r2, c2) == false) {
-                System.out.println("Impossible");
-                continue;
-            }
-            int[][] board = new int[8][8];
-            int count = 2;
-            for (int g = 0; g < 8; g++) {
-                for (int j = 0; j < 8; j++) {
-                    board[g][j] = count;
-                    count++;
-                }
-            }
-            board[r1][c1] = 1;
-            board[r2][c2] = 1;
-            Set<Integer> set1 = new HashSet<Integer>();
-            Set<Integer> set2 = new HashSet<Integer>();
-            int iterator = 1;
-            while (r1 + iterator < 8 && c1 + iterator < 8) {
-                set1.add(board[r1 + iterator][c1 + iterator]);
-                iterator++;
-            }
-            iterator = 1;
-            while (r2 + iterator < 8 && c2 + iterator < 8) {
-                set2.add(board[r2 + iterator][c2 + iterator]);
-                iterator++;
-            }
-            iterator = 1;
-            while (r1 - iterator >= 0 && c1 - iterator >= 0) {
-                set1.add(board[r1 - iterator][c1 - iterator]); 
-                iterator++;
-            }
-            iterator = 1;
-            while (r2 - iterator >= 0 && c2 - iterator >= 0) {
-                set2.add(board[r2 - iterator][c2 - iterator]);
-                iterator++;
-            }
-            iterator = 1;
-            while (r1 + iterator < 8 && c1 - iterator >= 0) {
-                set1.add(board[r1 + iterator][c1 - iterator]);
-                iterator++;
-            }
-            iterator = 1;
-            while (r2 + iterator < 8 && c2 - iterator >= 0) {
-                set2.add(board[r2 + iterator][c2 - iterator]);
-                iterator++;
-            }
-            iterator = 1;
-            while (r1 - iterator >= 0 && c1 + iterator < 8) {
-                set1.add(board[r1 - iterator][c1 + iterator]);
-                iterator++;
-            }
-            iterator = 1;
-            while (r2 - iterator >= 0 && c2 + iterator < 8) {
-                set2.add(board[r2 - iterator][c2 + iterator]);
-                iterator++;
-            }
-            int key = -1;
-            for (int s : set1) {
-                if (set2.contains(s)) {
-                    key = s;
-                }
-            }
-            if (set1.contains(1)) {
-                output += "1 " + ca + " " + ra;
-
-            } else {
-                output += "2 " + ca + " " + ra + " ";
+        for(int t = 0; t < testCases; t++){
+            String[] input = sc.nextLine().split(" ");
+            int startC = getColumnIndex(input[0].charAt(0));
+            int startR = Integer.parseInt(input[1])-1;
+            int endC = getColumnIndex(input[2].charAt(0));
+            int endR = Integer.parseInt(input[3])-1;
+            //if start and end are on different colors print impossible
+            if(((startC%2!=endC%2)&&(startR%2==endR%2))||((startC%2==endC%2)&&(startR%2!=endR%2))){System.out.println("Impossible"); continue;}
+            //if start and end are one move away just print out start and end
+            if (Math.abs(startC-endC)==Math.abs(startR-endR) && startC!=endC && startR!=endR){System.out.println("1 " + getColumnChar(startC) + " " + (startR+1) + " " + getColumnChar(endC) + " " + (endR+1)); continue;}
+            //if we have the same start as finish then print out 0 moves
+            if ((startC-endC)==(startR-endR) && startC==endC && startR==endR){System.out.println("0 " + getColumnChar(startC) + " " + (startR+1) ); continue;}
             
-            for (int w = 0; w < 8; w++) {
-                for (int u = 0; u < 8; u++) {
-                    if (board[w][u] == key) {
-                        for (Character c : column.keySet()) {
-                            if (column.get(c) == u) {
-                                output += "" + c;
-                            }
+            
+            //each direction matrix we can move from a starting point
+            int[][] dir = {{1,1},{-1,1},{1,-1},{-1,-1}};
+            //middle points we will reach
+            int midR=0, midC = 0;
+            //for each length we can move in each direction
+            boolean found = false;
+            for(int i = 0; i < 8; i++){
+                //for each direction we can move
+                for(int j = 0;j < 4; j++){
+                    //get current directions
+                    int[]a = dir[j];
+                    //find new middle points
+                    midC = startC+(a[0]*i);
+                    midR = startR+(a[1]*i);
+                    //if middle points are in the 8x8 matrix
+                    if(midC>=0&&midC<8&&midR>=0&&midR<8){
+                        //if we are an equal distance and not on the same row or column then we have found the middle point
+                        if(Math.abs(midC-endC)==Math.abs(midR-endR) && midC!=endC && midR!=endR){
+                            found=true;
+                            break;
                         }
-                        for (Character c : row.keySet()) {
-                            if (row.get(c) == w) {
-                                output += " " + c;
-                            }
-                        }
-
                     }
                 }
-            }}
-            output += " " + cb + " " + rb;
-            System.out.println(output);
-        }
-    }
-
-    public static boolean isSameColor(int r1, int c1, int r2, int c2) {
-        if (isEven(r1) == isEven(c1)) {
-            if (isEven(r2) == isEven(c2)) {
-                return true;
+                //if we have found middle point break
+                if (found)break;    
             }
+            //print output
+            System.out.println("2 " + getColumnChar(startC) + " " + (startR+1)+ " " + getColumnChar(midC) + " " + (midR+1) + " " + getColumnChar(endC) + " " + (endR+1));            
+            
         }
-        if (isEven(r1) != isEven(c1)) {
-            if (isEven(r2) != isEven(c2)) {
-                return true;
-            }
-        }
-        return false;
     }
-
-    public static boolean isEven(int x) {
-        if (((double) (x)) % 2.0 == 0) {
-            return true;
-        }
-        return false;
+    //return the index of the chess board based on ascii value
+    public static int getColumnIndex(char c){
+        return ((int)c)-64 - 1;
     }
-
+    //return the cooresponding char for a given index of the chessboard
+    public static char getColumnChar(int i){
+        return (char)(i + 1 + 64);
+    }
 }
