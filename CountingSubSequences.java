@@ -1,41 +1,38 @@
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
 /**
- * @author L-Sternhagen
+ * @author lucas
+ * Solution to Kattis problem Counting Subsequences.
+ * https://open.kattis.com/problems/subseqhard
  */
-public class CountingSubSequences {
-
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int testCases = Integer.parseInt(br.readLine());
-        for (int i = 0; i < testCases; i++) {
-            br.readLine();
-            int n = Integer.parseInt(br.readLine());
-            String[] in = br.readLine().split(" ");
-            int[] input = new int[n];
-            for (int a = 0; a < n; a++) {
-                input[a] = Integer.parseInt(in[a]);
-            }
-            long sum = 0;
-            Map<Long, Integer> myMap = new HashMap<>();
-            myMap.put(0L,1);
-            long sum47 = 0;
-            for (int f = 0; f < n; f++) {
-                sum += input[f];
-                if (myMap.containsKey(sum)) {
-                    myMap.put(sum, myMap.get(sum) + 1);
-                } else {
-                    myMap.put(sum, 1);
+public class CountingSubSeq {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int test_cases = Integer.parseInt(sc.nextLine());
+        //loop through each test case
+        for(int t = 0; t < test_cases; t++){
+            sc.nextLine(); sc.nextLine();
+            //read input
+            String[] nums = sc.nextLine().split(" ");
+            //hold each sum and the amount of times we have seen it
+            Map<Long,Integer> distinctNumCount = new HashMap<Long,Integer>();
+            //we start with 0 sum
+            distinctNumCount.put(0L, 1);
+            int count47 = 0; long curSum = 0L;
+            //loop through each integer
+            for(int i = 0; i < nums.length; i++){
+                //add to current sum
+                curSum += Long.parseLong(nums[i]);
+                //if we have encountered this sum before increment it
+                if(distinctNumCount.containsKey(curSum)){
+                    distinctNumCount.put(curSum, distinctNumCount.get(curSum) + 1);
                 }
-                if (myMap.containsKey(sum - 47)) {
-                    sum47 += myMap.get(sum - 47);
-                }
+                //else put map it to one
+                else distinctNumCount.put(curSum, 1);
+                //add the number of times we have seen a sum that is 47 less than current sum, or 0 if we haven't seen any
+                count47+= distinctNumCount.getOrDefault(curSum-47, 0);
             }
-            System.out.println(sum47);
+            //print output
+            System.out.println(count47);  
         }
     }
 }
