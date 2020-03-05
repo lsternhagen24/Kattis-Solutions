@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to kattis problem Eating Out
+ https://open.kattis.com/problems/eatingout
  */
 public class EatingOut {
     public static void main(String[] args) {
