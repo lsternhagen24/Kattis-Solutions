@@ -1,5 +1,7 @@
 /**
  * @author L-Sternhagen
+ Solution to kattis problem DayDreaming Stockbroker
+ https://open.kattis.com/problems/stockbroker
  */
 
 import java.util.*;
@@ -37,8 +39,7 @@ public class DayDreamingStockbrocker {
             //if at last day break
             if(i==n-1){break;}
         }
-        System.out.println(cash);
-        
-        
+        //print output
+        System.out.println(cash);  
     }
 }
