@@ -61,11 +61,6 @@ public class DaceyTheDice {
             else System.out.println("No");
         
         }
-
-        
-        
-        
-        
         
     }
     public static class State {
