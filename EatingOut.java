@@ -42,18 +42,11 @@ public class EatingOut {
                 minBucket++;
             }
         }
-        
-        
-        
         //find if all 3 have same pick 
         boolean found = false;
         for(int i = 0; i < m; i++){if(overlap[i]>2)found = true;}
         //output
         if(found)System.out.println("impossible");
-        else System.out.println("possible");
-        
-        
-        
-        
+        else System.out.println("possible");    
     }
 }
