@@ -1,14 +1,23 @@
 import java.util.Scanner;
-
+/*
+Solution to Kattis Eight Queens problem.
+https://open.kattis.com/problems/8queens
+*/
 public class EightQueens {
 
-    public static void main(String[] args) {
+    public static void main(String[] args
+                           ) {
+        //scanner to read input
         Scanner sc = new Scanner(System.in);
+        //board to hold string input
         String[] board = new String[8];
+        //loop through input and initialize board
         for (int i = 0; i < 8; i++) {
         board[i] = sc.nextLine();
         }
+        //create eightqueens object
         EightQueens answer = new EightQueens(board);
+        //Analyze board to see if passes eightqueens test, then print output
         if(answer.doesPass()){
             System.out.println("valid");
         }
@@ -16,10 +25,11 @@ public class EightQueens {
             System.out.println("invalid");
         }
     }
+    //class to hold eightqueens object
     public static class EightQueens {
 
     int[][] chessBoard = new int[8][8];
-
+    //constructor to initialize off of input board
     public EightQueens(String[] a) {
         int count = 0;
         for(String s : a){
@@ -35,7 +45,7 @@ public class EightQueens {
         }
         
     }
-
+      //check all ways queens could interact with eachother to see if passes
       public boolean doesPass() {
         //checks vertically
         for (int k = 0; k < 8; k++) {
@@ -93,6 +103,7 @@ public class EightQueens {
                 }
             }
         }
+        //no overlap found, return true
         return true;
     }
 }
