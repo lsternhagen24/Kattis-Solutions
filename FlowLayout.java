@@ -7,8 +7,11 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Flow Layout
+ https://open.kattis.com/problems/flowlayout
  */
 public class FlowLayout {
+    //static variables for testing
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -18,14 +21,17 @@ public class FlowLayout {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
+    //static variables for processing
     static int[][] grid;
     static int n;
     static int MAX_WIDTH_OF_GRID = 80;
     static int MAX_HEIGHT_OF_GRID = 1500;
     static Map<Integer,Integer> rowEnd;
     public static void main(String[] args) {
+        //read input
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
+        //loop until end of input
         while(n!=0){
             int cwidth ;
             int cheight;
@@ -41,6 +47,7 @@ public class FlowLayout {
                 if(cwidth==-1||cheight==-1)break;
                 boolean foundrow = false;
                 Integer h = heights_to_check.get(heights_to_check.size()-1);
+                //find row to put rectange into
                 for(int e = 0; e < n; e++){
                     if(rectangle_does_fit(h,e,cwidth,cheight)){
                         foundrow = true;
@@ -49,6 +56,7 @@ public class FlowLayout {
                         break;
                     }
                 }
+                //if we haven't found a row then start a new row
                 if(!foundrow){
                     int maxSum = -1; 
                     for(Integer w: rowEnd.keySet()){
@@ -77,13 +85,12 @@ public class FlowLayout {
                 if(maxWidth!=-1)break;
             }
             //printGrid(maxHeight, maxWidth);
+            //print output
             System.out.println((maxWidth+1) + " x " + (maxHeight+1)); 
             n = sc.nextInt();
         }
-        
-        
-        
     }
+    //prints grid for testing purposes
     public static void printGrid(int mx1, int mx2){
         for (int x = 0; x <= mx1; x++) {
             for (int y = 0; y <= mx2; y++) {
@@ -94,7 +101,7 @@ public class FlowLayout {
             System.out.println("");
         }
     }
-    
+    //adds a rectangle to grid
     public static void addRect(int rowStart, int columnStart, int width, int height){
         for(int x = rowStart; x < rowStart+height; x++){
             for(int y = columnStart; y < columnStart+width; y++){
@@ -102,7 +109,7 @@ public class FlowLayout {
             }
         }
     }
-    
+    //returns true if grid can fit the rectangle passed in
     public static boolean rectangle_does_fit(int rowStart, int columnStart, int width, int height){
         if((columnStart+width)>n){return false;}
         for(int row = rowStart; row < rowStart+height; row++){
