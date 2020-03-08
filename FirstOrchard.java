@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem First Orchard
+ https://open.kattis.com/problems/orchard
  */
 public class FirstOrchard {
     //hold all state's winning probabilities for memoization 
