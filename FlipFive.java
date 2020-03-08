@@ -7,6 +7,8 @@ import java.util.Set;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Flip Five
+ https://open.kattis.com/problems/flipfive
  */
 public class FlipFive {
     public static void main(String[] args) {
@@ -32,8 +34,6 @@ public class FlipFive {
                 statesVisited.add(w);
                 q.add(new State(w,1));
             } 
-            
-
             //run bfs on states
             while(!q.isEmpty()){
                 //get current state
