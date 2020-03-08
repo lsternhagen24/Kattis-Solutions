@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Faucet Flow
+ https://open.kattis.com/problems/faucetflow
  */
 public class FaucetFlow {
     
@@ -26,7 +28,7 @@ public class FaucetFlow {
             System.out.println(sum);
         }
     }
-    //definately not my third attempt at this method, that would be embarressing 
+    //get the fill amount for between two dividers 
     public static long getFill3(long[] dividers, int fillLocation){
         //get maximum wall on left and right sides
         long leftMax = getHalfMax(dividers, 0, fillLocation);
