@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Flag Quic
+ https://open.kattis.com/problems/flagquiz
  */
 public class FlagQuiz {
     public static void main(String[] args) {
@@ -42,8 +44,7 @@ public class FlagQuiz {
                     if(!comparer.get(input[f][r]).equals(comparer.get(input[e][r])))sum++;
                 }
                 if(sums[f] < sum)sums[f]=sum;
-            }
-            
+            }   
         }
         //find the minimum number of changes needed and all equal ones to an arraylist
         ArrayList<Integer> mins = new ArrayList<Integer>();
@@ -57,8 +58,6 @@ public class FlagQuiz {
         }
         //print all min answers
         for(Integer p: mins){System.out.println(printString(input[p]));}
-        
-        
     }
     public static String printString(String[] g){
         String output = "";
