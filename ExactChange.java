@@ -5,6 +5,8 @@ import java.util.Map;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Exact Change
+ https://open.kattis.com/problems/exactchange2
  */
 public class ExactChange {
 
