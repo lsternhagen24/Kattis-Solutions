@@ -7,6 +7,8 @@ import java.util.Set;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Flower Garden
+ https://open.kattis.com/problems/flowergarden
  */
 public class FlowerGarden {
     static final int TRANSLATE = 500;
@@ -36,6 +38,7 @@ public class FlowerGarden {
                 curColumn = new_column;
             }
             int maxIdx = 0;
+            //find max index
             for(int i = 0; i < distances.size(); i++){
                 if(distances.get(i) <= d && primes.contains(i))maxIdx =i;
             }
@@ -46,7 +49,7 @@ public class FlowerGarden {
     public static double getDistance(int r1, int c1, int r2, int c2){
         return Math.sqrt(Math.pow(r1-r2,2) + Math.pow(c1-c2,2));
     }
-    //fast generation of primes
+    //fast generation of primes using sieve
     public static Set<Integer> sieveOfEratosthenes(int n) {
         boolean prime[] = new boolean[n + 1];
         Arrays.fill(prime, true);
@@ -65,5 +68,4 @@ public class FlowerGarden {
         }
         return primeNumbers;
     }
-
 }
