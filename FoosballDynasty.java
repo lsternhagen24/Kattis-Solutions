@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Foosball Dynasty
+ https://open.kattis.com/problems/foosball
  */
 public class FoosballDynasty {
     static ArrayList<Dynasty> al;
@@ -38,10 +40,9 @@ public class FoosballDynasty {
             }
         }
         //print all max dynastys in order
-        for(String e: winners)System.out.println(e);
-        
-        
+        for(String e: winners)System.out.println(e);   
     }
+    //update the board for a new winner
     public static void updateBoard(char winner){
         String winners = board.dynasty=='n' && winner=='B' ? board.bo + " " + board.bd : board.dynasty=='n' ? board.wo + " " + board.wd :  winner == 'B' ? board.bd + " " + board.bo : board.wd + " " + board.wo;
         if(board.dynasty!=winner){
@@ -52,6 +53,7 @@ public class FoosballDynasty {
         }
         swapBoard(winner);
     }
+    //swaps the board for a new winner
     public static void swapBoard(char winner){
         if(winner=='B'){
             String temp = board.bd; board.bd = board.bo; board.bo = temp;
@@ -66,7 +68,7 @@ public class FoosballDynasty {
             board.bo = upnext.poll();
         }
     }
-    
+    //holds the information about who is winning a dynasty and for how long
     public static class Dynasty{
         int wins;
         String name;
@@ -75,6 +77,7 @@ public class FoosballDynasty {
             this.wins = wins;
         }
     }
+    //holds information about the board such as who is on offense, defenece, and for what team
     public static class Board{
         String bo;
         String bd;
@@ -82,7 +85,7 @@ public class FoosballDynasty {
         String wd;
         char dynasty;
         int winners = 0;
-        
+        //constructor
         public Board(String wo, String bo, String wd, String bd){
             this.bo = bo;
             this. bd = bd;
@@ -90,6 +93,7 @@ public class FoosballDynasty {
             this.wd = wd;
             this.dynasty = 'n';
         }
+        //toString for debugging
         @Override
         public String toString(){
             return "Black O: " + bo + " Black d: " + bd + "\nWhite O: " + wo + " White d: " + wd + "\n";
