@@ -3,17 +3,21 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Flow Shop
+ https://open.kattis.com/problems/flowshop
  */
 public class FlowShop {
     public static void main(String[] args) {
+        //scanner to read input
         Scanner sc = new Scanner(System.in);
         int swath = sc.nextInt();
         int stages = sc.nextInt();
         sc.nextLine();
-        
+        //hold dp finish times
         int[][] finishTimes = new int[swath][stages];
+        //hold input
         int[][] inputGrid = new int[swath][stages];
-        
+        //read input into grid
         for(int i = 0; i < swath; i++){
             for(int j = 0; j < stages; j++){
                 inputGrid[i][j] = sc.nextInt();
@@ -39,10 +43,11 @@ public class FlowShop {
             }
         }
         String output = "";
+        //find final output and concat string
         for(int i = 0; i < swath; i++)output+= finishTimes[i][stages-1] + " ";
+        //print output
         System.out.println(output.trim());
-        
-        
+
        /* uncomment for testing
         for(int a = 0; a < swath; a++){
             for(int b = 0; b < stages; b++){
@@ -51,6 +56,5 @@ public class FlowShop {
             System.out.println("");
         }
         */
-        
     }
 }
