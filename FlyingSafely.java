@@ -4,6 +4,7 @@ import java.util.Scanner;
 /**
  * @author L-Sternhagen
  Solution to Kattis problem Flying Safely
+ https://open.kattis.com/problems/flyingsafely
  */
 public class FlyingSafely {
     public static void main(String[] args) {
