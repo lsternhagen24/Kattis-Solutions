@@ -3,12 +3,15 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Fun House
+ https://open.kattis.com/problems/funhouse
  */
 public class FunHouse {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int width, length;
         int case_number = 0;
+        //loop until we reach end of input
         while(true){
             case_number++;
             width = sc.nextInt();
@@ -22,7 +25,7 @@ public class FunHouse {
             //startX, startY
             //direcion left=-1, right=1, up=2, down=0
             int startX=0, startY=0, direction = 0; 
-            //find starting *
+            //find starting * and set the direction
             for(int i = 0; i < length; i++){
                 String j = grid[i];
                 if(j.contains("*")){
@@ -49,10 +52,7 @@ public class FunHouse {
             //print output
             System.out.println("HOUSE " + case_number);
             for(int i=0; i < length; i++)System.out.println(grid[i]);
-            
-            
         }
-        
     }
     //updates direction based on character and old direction
     public static int updateDirection(int direction, char cur){
@@ -92,5 +92,4 @@ public class FunHouse {
             return "Row = " + this.y + " Column = "  + this.x;
         }
     }
-    
 }
