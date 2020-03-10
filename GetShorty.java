@@ -1,4 +1,9 @@
 import java.util.*;
+/*
+Solution to Kattis Problem Get Shorty
+https://open.kattis.com/problems/getshorty
+*/
+
 public class GetShorty {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -92,6 +97,5 @@ public class GetShorty {
             String e = this.location + "  " + this.cost;
             return e.hashCode();
         }
-        
     }
 }
