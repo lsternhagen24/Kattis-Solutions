@@ -1,6 +1,11 @@
 
 import java.util.*;
 
+/*
+Solution to Kattis Problem Genetic Search
+https://open.kattis.com/problems/geneticsearch
+*/
+
 public class GeneticSearch {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
