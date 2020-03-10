@@ -1,6 +1,10 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/*
+Solution to Kattis Problem Frosting on the Cake
+https://open.kattis.com/problems/frosting
+*/
 
 public class FrostingOnTheCake {
     public static void main(String[] args)throws Exception {
