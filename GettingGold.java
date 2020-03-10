@@ -1,6 +1,10 @@
 
 import java.awt.Point;
 import java.util.*;
+/*
+Solution to Kattis Problem Getting Gold
+https://open.kattis.com/problems/gold
+*/
 public class GettingGold {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -15,15 +19,16 @@ public class GettingGold {
             for(int i = 0; i < w; i++)
                 if(grid[q][i]=='P'){start.x=i;start.y=q;}
         }
-        
+        //set of points we have already visited
         Set<Point> marked = new HashSet<Point>();
+        //queue for our bfs
         Queue<Point> q = new LinkedList<Point>();
         q.add(start);
-        
+        //amount of gold we have reached
         int gold = 0;
         //directions can move
         int[][] directions = {{1,0},{-1,0},{0,1},{0,-1}};
-        //bfs
+        //bfs until there are no more locations we can visit
         while(!q.isEmpty()){
             //get current location
             Point cur = q.poll();
@@ -49,6 +54,7 @@ public class GettingGold {
                 q.add(move); 
             }
         }
+        //print output
         System.out.println(gold);
     }
 }
