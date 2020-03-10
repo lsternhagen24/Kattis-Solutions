@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Friday the 13th
+ https://open.kattis.com/problems/friday
  */
 public class FridayThe13th {
     public static void main(String[] args) {
@@ -24,14 +26,12 @@ public class FridayThe13th {
                 for(int j = 0; j < days_in_current_month; j++){
                     if(day==5&&j==12)fridays_the_13th++;
                     day++;
+                    //reset the day
                     if(day==7)day=0;      
                 }
             }
+            //print output
             System.out.println(fridays_the_13th);
         }
-        
-        
-        
-        
     }
 }
