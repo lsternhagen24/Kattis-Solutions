@@ -8,9 +8,12 @@ import java.util.Set;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem George
+ https://open.kattis.com/problems/george    
  */
 public class George {
     public static void main(String[] args) {
+        //read input
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
@@ -20,6 +23,7 @@ public class George {
         int numInter = sc.nextInt();
         int[] georgeLoc = new int[numInter];
         for(int i = 0; i <numInter; i++)georgeLoc[i] = sc.nextInt();
+        //create a map of intersection locations and read in graph
         Map<Integer,Set<Edge>> locs = new HashMap<Integer,Set<Edge>>();
         for(int i = 0 ; i < m; i++){
             int a = sc.nextInt();
@@ -32,7 +36,7 @@ public class George {
             cur = locs.get(b);
             cur.add(new Edge(a,l));
         }
-        
+        //create a map from where goerge was to a timeperiod that he was there
         Map<String, TimePeriod> georgeRoute = new HashMap<String,TimePeriod>();
         int s = 0;
         for(int i = 0; i < numInter-1; i++){
@@ -44,16 +48,17 @@ public class George {
             georgeRoute.put(Math.min(georgeLoc[i], georgeLoc[i+1]) + " " + Math.max(georgeLoc[i], georgeLoc[i+1]),new TimePeriod(s, ou));
             s = ou;
         }
-        
-        
+        //set of marked locations
         Set<Integer> marked = new HashSet<Integer>();
         PriorityQueue<State> pq = new PriorityQueue<State>();
         pq.add(new State(start,diff));
+        //search for best time
         while(true){
             State cur = pq.poll();
             //System.out.println("at location: " + cur.location + " during time : " +  cur.time );
             if(marked.contains(cur.location))continue;
             marked.add(cur.location);
+            //if we have reached the end print output
             if(cur.location==end){System.out.println(cur.time-diff);break;}
             for(Edge w: locs.get(cur.location)){
                 int time = cur.time + w.cost;
@@ -63,13 +68,10 @@ public class George {
                     if(dd.start < cur.time && dd.end > cur.time){time+= (dd.end - (cur.time));}
                 }
                 if(!marked.contains(w.location))pq.add(new State(w.location, time));
-            }
-            
+            }   
         }
-        
-        
     }
-    
+    //holds the time period george was at an intersection
     public static class TimePeriod{
         int start;
         int end;
@@ -88,7 +90,7 @@ public class George {
             return e.hashCode();
         }
     }
-    
+    //holds a state that george was in
     public static class State implements Comparable{
         int location; 
         int time;
@@ -96,7 +98,6 @@ public class George {
             this.location = location;
             this.time = time;
         }
-        
         @Override
         public boolean equals(Object o){
             State b = (State)o;
@@ -113,7 +114,7 @@ public class George {
             return e.hashCode();
         }
     }
-    
+    //edge for weighted graph
     public static class Edge{
         int location;
         int cost;
