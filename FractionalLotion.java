@@ -7,6 +7,8 @@ import java.io.OutputStreamWriter;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Fractiponal Lotion
+ https://open.kattis.com/problems/fractionallotion
  */
 public class FractionalLotion {
     public static void main(String[] args)throws Exception {
@@ -22,8 +24,10 @@ public class FractionalLotion {
             for(int aa=n+1; aa < n*2+1; aa++ ){
                 int r = aa-n;
                 int g = n*n+r*n;
+                //if we have found a solution increment count
                 if(g%r==0){count++;}
             }
+            //print out count
             out.write(count + "\n");           
         }
         out.flush();
