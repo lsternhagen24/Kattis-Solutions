@@ -1,4 +1,8 @@
 import java.util.*;
+/*
+Solution to Kattis Problem Get To Work
+https://open.kattis.com/problems/gettowork
+*/
 public class GetToWork {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -48,6 +52,5 @@ public class GetToWork {
             }
             System.out.println(output.trim());
         }
-        
     }
 }
