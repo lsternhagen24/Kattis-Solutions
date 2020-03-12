@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem GlitchBot
+ https://open.kattis.com/problems/glitchbot
  */
 public class GlitchBot {
     public static void main(String[] args) {
@@ -39,7 +41,6 @@ public class GlitchBot {
             instructions[i] = cur;
         }
         System.out.println(indexChanged + " " + changeTo);
-        
     }
     //given a set of instructions, simulates the instructions and returns the point the robot finishes on
     public static Point simulate(String[] instructions){
@@ -57,7 +58,6 @@ public class GlitchBot {
             //else update direction based on current direction and right or left
             else if(i.equals("Right"))dir = (dir+1)%4;
             else {dir = (dir+3)%4;}
-            
         }
         return cur;
     }
