@@ -8,6 +8,8 @@ import java.util.Set;
 
 /**
  * @author L-Sternhagen
+ Solution to Kattis Problem Godzilla
+ https://open.kattis.com/problems/godzilla
  */
 public class Godzilla {
     static char[][] grid;
@@ -16,12 +18,15 @@ public class Godzilla {
     static int l;
     static int w;
     //static boolean debug = false;
+    //the four directions godzilla can move
     static final Point[] move = {new Point(0,-1), new Point(1,0), new Point(0,1), new Point(-1,0)};
     public static void main(String[] args)throws Exception {
+        //reader for reading input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
+        //loop through all test cases
         for(int ww = 0; ww < t; ww++){
-
+            //keep set of points we have already been to
             Set<Point> marked = new HashSet<Point>();
             gzMarked = new HashSet<Point>();
             String[] gg = br.readLine().split(" ");
@@ -48,7 +53,7 @@ public class Godzilla {
             gzMarked.add(godzilla);
             count = 0;
             
-
+            //loop until godzilla is destroyed
             while(true){
                 Point old = godzilla;
                 godzilla = updateGodzilla(godzilla);
@@ -65,6 +70,7 @@ public class Godzilla {
                         } 
                     }
                 }
+                //check in each direction and see if any robots can destroy godzilla
                 currentRobots = updates;
                  boolean found = false;
                 for(int q = godzilla.y; q < w; q++){
@@ -90,6 +96,7 @@ public class Godzilla {
         }
         
     }
+    //print the grid for cases of debugging
     public static void printGrid(Point g){
 
         for(int r = 0; r < grid.length; r++){
@@ -99,6 +106,7 @@ public class Godzilla {
         System.out.println("-----------------");
     
     }
+    //print the location of godzilla
     public static void printByGZilla(Point g){
         int r = Math.max(0, g.y-10);
         int r2 = Math.min(grid.length-1, g.y+10);
@@ -110,7 +118,7 @@ public class Godzilla {
         }
         System.out.println("-----------------");
     }
-    
+    //update godzilla's point given the current point he is at
     static Point updateGodzilla(Point cur){
         for(Point i: move){
             Point newP = addPoint(i,cur);
@@ -132,10 +140,12 @@ public class Godzilla {
         
         return cur;
     }
+    //sum two points
     public static Point addPoint(Point a, Point b){
         Point c = new Point(a.x+b.x, a.y+b.y);
         return c;
     }
+    //tree point class for quick comparisons
     static class TreePoint implements Comparable<TreePoint>{
         int index; 
         char type;
@@ -162,6 +172,7 @@ public class Godzilla {
             return index + " "+ type;
         }
     }
+    //point class for locations on map
     public static class Point{
         int x;
         int y;
