@@ -63,7 +63,7 @@ public class Kastenlauf {
             }
             //if we haven't found our goal print sad
             if(foundGoal==false){System.out.println("sad");}
-            else{System.out.Println("Happy");}
+            else{System.out.Println("happy");}
         }
     }
 }
