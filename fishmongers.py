@@ -1,5 +1,9 @@
 import sys
 import os
+
+#Solution to Kattis Problem FishMongers
+#https://open.kattis.com/problems/fishmongers
+
 #class to hold FishMonger price and amount
 class FishMonger:
     def __init__(self, f, p):
