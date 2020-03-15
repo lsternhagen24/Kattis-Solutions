@@ -1,3 +1,6 @@
+--Solution to Kattis Problem Fridge
+--https://open.kattis.com/problems/freefood
+
 sumDigits :: (String, [Int]) -> [Int]
 updateElement :: (Int, [Int], Int ) -> [Int]
 getMin :: ([Int], Int, Int, Int) -> [Int]
