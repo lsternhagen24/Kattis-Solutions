@@ -2,8 +2,9 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 /*
- 2048 correct solution on kattis
  * @author lucas
+ Solution to Kattis Problem 2048
+ https://open.kattis.com/problems/2048
  */
 public class TwentyFortyEight {
 
@@ -17,6 +18,7 @@ public class TwentyFortyEight {
             }
             sc.nextLine();
         }
+      //update the board based on the next direction and print output
         board = update(board, Integer.parseInt(sc.nextLine()));
         for (int o = 0; o < 4; o++) {
             for (int p = 0; p < 4; p++) {
@@ -25,7 +27,7 @@ public class TwentyFortyEight {
             System.out.println();
         }
     }
-
+   //rotate or calc the board based on x
     public static int[][] update(int[][] board, int x) {
         for(int i = 0; i < x; i++){
             board = rotate(board);
@@ -38,7 +40,7 @@ public class TwentyFortyEight {
        }
         return board;
     }
-
+//rotates the board
     public static int[][] rotate(int[][] board) {
         int[][] newBoard = new int[4][4];
         for (int row = 0; row < 4; row++) {
@@ -51,7 +53,7 @@ public class TwentyFortyEight {
         }
         return newBoard;
     }
-
+   //calcs the board
     public static int[] calc(int[] nu) {
         int i = 0;
         LinkedList<Integer> myList = new LinkedList<Integer>();
@@ -82,7 +84,7 @@ public class TwentyFortyEight {
         }
         return nu;
     }
-
+//reverse a integer array
     public static int[] reverse(int[] x) {
         int[] y = new int[x.length];
         int q = 0;
@@ -92,7 +94,7 @@ public class TwentyFortyEight {
         }
         return y;
     }
-
+//returns true if two int's can combine
     public static boolean canCombine(int a, int b) {
         return (a + b == a * 2 && a != 0 && b != 0) ? true : false;
     }
