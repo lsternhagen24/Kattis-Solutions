@@ -1,4 +1,8 @@
 import Data.List
+
+--Solution to Kattis Problem HangMan
+--https://open.kattis.com/problems/hangman
+
 correct :: (String, String, Integer) -> (Bool)
 --base case for guessing all correct letters
 correct ([], b, c) = True
