@@ -1,5 +1,9 @@
 import Data.List
 import Control.Monad
+
+--Solution to Kattis Problem Free Food
+--https://open.kattis.com/problems/freefood
+
 -- this is haskell code, a=list of found int, b = original, c = current string number , d = current value, e = sum
 countUnique :: ( [Int],  [String], Int, Int, Int) -> (Int)
 
