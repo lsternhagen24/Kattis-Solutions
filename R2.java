@@ -3,20 +3,16 @@ import java.util.Scanner;
 
 /**
  * @author L-Sternhagen
+Solution to Kattis Problem R2
+https://open.kattis.com/problems/r2
  */
 public class R2 {
     public static void main(String[] args) {
+        //scanner for reading input
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        for(int i = 0; i <n; i++){
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            int c = sc.nextInt();
-
-            int g = b-c;
-            if(g>a)System.out.println("advertise");
-            else if (g==a)System.out.println("does not matter");
-            else System.out.println("do not advertise");
-        }
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        //print output
+        System.out.println((b*2)-a);
     }
 }
