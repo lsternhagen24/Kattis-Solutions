@@ -1,5 +1,9 @@
 import sys
 
+#Solution to Kattis Problem Faulty Robot
+#https://open.kattis.com/problems/faultyrobot
+
+#Class for holding a state
 class State:
     def __init__(self, location, buggyMoveLeft):
         self.location=location
@@ -13,21 +17,21 @@ class State:
         else:
             return False
 
-
+#class for holding a node
 class Node:
     def __init__(self, location, neighbors, forced):
         self.location=location
         self.neighbors=neighbors
         self.forced=forced
 
-
+#visits a state
 def visitState(newState):
     global marked
     if newState not in marked:
         marked.add(newState)
         dfs(newState)
 
-
+#depth first search on states
 def dfs(i):
     global marked
     global ending_locations
@@ -76,4 +80,5 @@ ending_locations = set()
 start = State(1,1)
 sys.setrecursionlimit(10000)
 dfs(start)
+#print output
 print(len(ending_locations))
